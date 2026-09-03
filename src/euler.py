@@ -27,6 +27,8 @@ def f(x, y):
 
 step_sizes = [0.1, 0.05, 0.025, 0.0125]
 
+errors = []
+
 for h in step_sizes:
 
     n = int(1 / h)
@@ -36,7 +38,13 @@ for h in step_sizes:
     approximation = y[-1]
     error = abs(math.e - approximation)
 
+    errors.append(error)
+
     print(f"h = {h}")
     print(f"Euler_approximation = {approximation}")
     print(f"Absolute_error = {error}")
     print()
+
+for i in range(len(errors)-1):
+    p = math.log(errors[i]/errors[1+i],2)
+    print(f"Order of convergence = {p}")    
